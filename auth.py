@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from livekit import api
+from livekit.api import AccessToken, VideoGrants
 
 # Load environment variables from .env file
 load_dotenv()
@@ -33,11 +33,11 @@ def generate_token(room_name, identity=None, name=None):
     
     # Create token with video grants
     token = (
-        api.AccessToken(LIVEKIT_API_KEY, LIVEKIT_API_SECRET)
+        AccessToken(LIVEKIT_API_KEY, LIVEKIT_API_SECRET)
         .with_identity(identity)
         .with_name(name)
         .with_grants(
-            api.VideoGrants(
+            VideoGrants(
                 room_join=True,
                 room=room_name,
             )
